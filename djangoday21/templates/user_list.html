@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .c1{
+            display: inline-block;
+            padding: 2px;
+            margin: 2px;
+            background-color: red;
+            color: white;
+        }
+        .active{
+            background-color: brown;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <ul>
+        {% for i in user_list %}
+        {% include 'li.html' %}
+        {% endfor %}
+    </ul>
+
+    {{ page_str }}
+    <select onchange="changePageSize(this)">
+           <option value="10">10</option>
+           <option value="30">30</option>
+           <option value="50">50</option>
+    </select>
+    <script src="/static/jquery-1.12.4.js"></script>
+    <script src="/static/jquery.cookie.js"></script>
+    <script>
+        function changePageSize(ths) {
+            var v=$(ths).val();
+            $.cookie('per_page_count',v,{'path':"/user_list/"});
+            location.reload()
+        }
+    </script>
+
+
+</body>
+</html>
